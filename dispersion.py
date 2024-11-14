@@ -4,16 +4,16 @@ import matplotlib.pyplot as plt
 from rotation import rotate, K
 
 def compute_dispersion(N, GNR):
-    # 常量定义
-    a = 1.42e-10  # 晶格参数（米）
-    m = 1.99e-26  # 质量（千克）
+    # Constant definition
+    a = 1.42e-10  # Lattice parameters (meters)
+    m = 1.99e-26  # Mass (kg)
     pi = np.pi
-    h_bar = 1.0546e-34  # 普朗克常数（Js）
-    kB = 1.38065e-23  # 玻尔兹曼常数（J/K）
-    n = 100  # k空间的分割数
+    h_bar = 1.0546e-34  # Planck constant (Js)
+    kB = 1.38065e-23  # Boltzmann constant (J/K)
+    n = 100  # Number of k-space divisions
     f = np.diag([36.50, 24.50, 9.82, 8.80, -3.23, -0.40, 3.00, -5.25, 0.15, -1.92, 2.29, -0.58])*10
 
-    # 原子位置
+    # Atom positions
     A_I, B_I = rotate(2 / 3 * np.pi, np.array([[1, 0, 0]]).T * a)
     A_II, B_II = rotate(1 / 3 * np.pi, np.array([[3 / 2, np.sqrt(3) / 2, 0]]).T * a)
     A_III, B_III = rotate(2 / 3 * np.pi, np.array([[1, np.sqrt(3), 0]]).T * a)
@@ -33,10 +33,9 @@ def compute_dispersion(N, GNR):
     KAB4 = np.concatenate((KAB4f, KAB4s), axis=2)
     KBA4 = np.concatenate((KBA4f, KBA4s), axis=2)
 
-    # 生成k点路径
+    # Generate k-point path
     d_list = 1000
-
-
+    
     len_omega = 12 * N
     omega = np.zeros((len_omega, d_list))
 
